@@ -20,3 +20,9 @@ Route::post('contacts', [MainController::class, 'sendEmail'])->name('sendEmail')
 
 Route::get('zajava', [MainController::class, 'zajava'])->name('zajava');
 Route::post('zajava', [MainController::class, 'sendZajava'])->name('sendZajava');
+
+Route::get('reviews', [MainController::class, 'reviews'])->name('reviews');
+Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
+
+//Route::get('admin', [Dush::class, 'reviews'])->name('reviews');
+//Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');

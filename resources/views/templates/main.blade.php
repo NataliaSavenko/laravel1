@@ -18,7 +18,7 @@
     <a href="{{route('home')}}">Home</a>
     <a href="{{route('contacts')}}">Contacts</a>
     <a href="{{route('zajava')}}">Zajava</a>
-        
+    <a href="{{route('reviews')}}">Reviews</a> 
 
 </nav>
         </header>

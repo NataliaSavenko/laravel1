@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
+use App\Config\Databaseconnect;
+use App\Models\Responce;
+
 
 use stdClass;
 
@@ -14,7 +17,11 @@ class MainController extends Controller
 {
     function index() : View
     {
-       
+        /** @var Article $article  */
+       /*  $article = Article::first();
+        dd($article->getAttribute('active'));
+        dd($article->active);  // __get   __set */
+
       // $category=new Category();
        // $category->name='Category4';
        // $category->descriptions='descriptionCategory4';
@@ -108,11 +115,46 @@ return to_route('zajava')->with('success','Thank you!');
 
 
 
+
+
+
+
+function reviews():View
+{
+    $responces=Responce::where('id','>','1') ->get();
+return view('reviews',compact('responces'));
+
+}
+
+function  responseS (Request $request)
+{
+    $request->validate(
+[
+ 
+'name'=>'required|min:2|max:15',
+'content'=>'required|min:10|max:200',
+'rate'=>'required|min:1|max:5',
+
+]);
+ $responce=new Responce();
+//$id=$request->id;
+$responce->name=$request->name;
+$responce->email=$request->email;
+$responce->content=$request->content;
+$responce->rate=$request->rate;
+$responce->save();
+
+
+    
+
+return to_route('reviews')->with('success','Thank you!'); 
+
+
 }
 
 
 
-
+}
 
 
 
