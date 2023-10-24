@@ -33,9 +33,9 @@
     </table>
 
     <a>Count: </a>
-    <a>{{$num}}</br></a>
-    <a>Avg: </a>
-    <a>{{$avgRate}}</a>
+    <a>{{$num}}</a>
+    <p>Avg: <a>{{$avgRate}}</a></p>
+    
 
 
 @endsection
