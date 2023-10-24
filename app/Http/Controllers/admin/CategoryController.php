@@ -44,7 +44,7 @@ class CategoryController extends Controller
         // $category->description = $request->description;
         // $category->save();
         Category::create($request->all());
-        return to_route('categories/index');
+        return to_route('categories.index');
     }
 
     /**
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         // $category->save();
 
         $category->update($request->all());
-        return to_route('categories/index');
+        return to_route('categories.index');
     }
 
     /**
@@ -87,6 +87,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('categories/index');
+        return to_route('categories.index');
     }
 }

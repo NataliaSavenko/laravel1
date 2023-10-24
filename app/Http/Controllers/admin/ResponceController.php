@@ -21,25 +21,38 @@ class ResponceController extends Controller
      public function index()
     {
        
-        $arrResponses=Responce::all();
-$sumRate=0;
+        $responces=Responce::all();
+        $sumRate=0;
+        $num=count($responces);
 
-for($i=0; $i<count($arrResponses);$i++)
+for($i=0; $i<$num;$i++)
 {
-    $sumRate +=$arrResponses[$i]->rate;
+    $sumRate +=$responces[$i]->rate;
 
 }
-$avgRate=$sumRate/count($arrResponses);
+$avgRate=$sumRate/count($responces);
 
 
-       // $responces = Responce::paginate(3);
-        return view('admin/responces/index', compact('arrResponses', 'avgRate'));
+        
+        return view('admin/responces/index', compact('responces','num','avgRate'));
     }
+
+   
+
+
+
 
     public function create()
     {
-        return view('admin/responces/create');
+        
+       
+     
+        return view('admin.responces.create');
+
+        
     }
+
+
 
    
     public function store(Request $request)
@@ -51,10 +64,22 @@ $avgRate=$sumRate/count($arrResponses);
         ]);
 
         Responce::create($request->all());
-        return to_route('admin/responces/create');
+        return to_route('responces.index');
+
+
+
     }
 
    
+   
+  
+
+
+
+
+
+
+
     public function show(string $id)
     {
         //
@@ -62,66 +87,7 @@ $avgRate=$sumRate/count($arrResponses);
 
 
 
-    
-   /* function  responseS (Request $request)
-    {
-        $request->validate(
-    [
-     
-    'name'=>'required|min:2|max:15',
-    'content'=>'required|min:10|max:200',
-    'rate'=>'required|min:1|max:5',
-    
-    ]);
-     $responce=new Responce();
-    //$id=$request->id;
-    $responce->name=$request->name;
-    $responce->email=$request->email;
-    $responce->content=$request->content;
-    $responce->rate=$request->rate;
-    $responce->save();
-    
-    
-        
-    
-    return to_route('reviews')->with('success','Thank you!'); 
-    
-    
-    }*/
+   
     
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-   /* public function edit(Responce $responce)
-    {
-        return view('admin/responces/edit', compact('responce'));
-    }*/
-
-    /**
-     * Update the specified resource in storage.
-     */
-    /*public function update(Request $request, Responce $responce)
-    {
-        $request->validate([
-            'name'=>'required|min:2|max:15' . $responce->id,
-'content'=>'required|min:10|max:200',
-'rate'=>'required|min:1|max:5',
-            
-        ]);
-
-       
-
-        $responce->update($request->all());
-        return to_route('responces.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    /*public function destroy( Responce $responce)
-    {
-        $responce->delete();
-        return to_route('responces.index');
-    }*/
 }

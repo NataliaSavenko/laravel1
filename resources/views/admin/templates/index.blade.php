@@ -221,15 +221,21 @@
     <!-- /.sidebar -->
   </aside>
 
-  <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      
-      <li class="nav-item">
-        <a href="{{route('responces.index')}}" class="nav-link">Responces</a>
-      </li>
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    
+    <li class="nav-item">
+      <a href="{{route('responces.index')}}" class="nav-link">Responces</a>
+    </li>
 
-    </ul>
-  </nav>
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+</aside>
+
   <!-- /.sidebar-menu -->
 </div>
 <!-- /.sidebar -->

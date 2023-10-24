@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ResponceController;
 use App\Http\Controllers\MainController;
 use App\Models\Category;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,11 +30,21 @@ Route::post('zajava', [MainController::class, 'sendZajava'])->name('sendZajava')
 Route::get('reviews', [MainController::class, 'reviews'])->name('reviews');
 Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
 
-Route::get('admin', [DashboardController::class, 'index'])->name('admin/dashboard');
-Route::resource('admin/categories', CategoryController::class);
 
-Route::get('admin', [ResponceController::class, 'index'])->name('admin/responces');
-Route::resource('admin/responces', ResponceController::class);
+
+Route::prefix('admin')->group(function()
+{
+    Route::get('/', [DashboardController::class, 'index'])->name('admin/dashboard');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('responces', ResponceController::class);
+});
+
+
+
+
+//Route::get('admin', [ResponceController::class, 'index'])->name('admin.responces');
+
 
 
 

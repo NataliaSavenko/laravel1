@@ -11,13 +11,13 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'descriptions'];
 
     
     protected function shortDescription(): Attribute
     {
         return Attribute::make(
-            get: fn (mixed $value, array $attributes) => Str::words( strip_tags($attributes['description']), 2, '...'),
+            get: fn (mixed $value, array $attributes) => Str::words( strip_tags($attributes['descriptions']), 2, '...'),
         );
     }
 

@@ -1,60 +1,41 @@
-@extends('admin/templates/index')
+@extends('admin.templates.index')
 
-@section('title-page', 'Create Responce')
+@section('title-page', 'Responces')
 
 @section('content')
 
-   
+    <a href="{{route('responces.create')}}" class="btn btn-primary mb-5">Create responce</a>
+
     <table class="table table-bordered">
-        <div>
-            <label for="name">Name*:</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" >
-                
-            @error('name')
-            <div class="invalid-feedback">{{$message}}
+        <thead>
+        <th>#</th>
+        <th>name</th>
+        <th>email</th>
+        <th>content</th>
+        <th>rate</th>
         
-            </div>
-            @enderror
+    </thead>
+        <tbody>
+            @foreach ($responces as $resp)
+        <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$resp->name}}</td>
+            <td>{{$resp->email}}</td>
+            <td>{{$resp->content}}</td>
+            <td>{{$resp->rate}}</td>
+           
+                   
+        </tr>
+        @endforeach
+        </tbody>
+       
         
-        </div>
-        
-        <div>
-            <label for="email">Email:</label>
-            <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" >
-            @error('email')
-            <div class="invalid-feedback">{{$message}}
-        
-            </div>
-            @enderror
-        
-        </div>
-        
-        <div>
-            <label for="content">Content*:</label>
-            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" >{{old('content')}}</textarea>
-            @error('content')
-            <div class="invalid-feedback">{{$message}}
-        
-            </div>
-            @enderror
-        
-        </div>
-        
-        
-        <div>
-            <label for="rate">Rate*:</label>
-            <textarea name="rate" id="rate" class="form-control @error('rate') is-invalid @enderror" >{{old('rate')}}</textarea>
-            @error('rate')
-            <div class="invalid-feedback">{{$message}}
-        
-            </div>
-            @enderror
-        
-        </div>
-        
-        <button type=submit class="btn btn-primary" name="create" >Create responce</button>
-        
-        </form>
-    
-   
+    </table>
+
+    <a>Count: </a>
+    <a>{{$num}}</br></a>
+    <a>Avg: </a>
+    <a>{{$avgRate}}</a>
+
+
 @endsection

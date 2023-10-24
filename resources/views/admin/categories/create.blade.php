@@ -1,4 +1,4 @@
-@extends('admin/templates/index')
+@extends('admin.templates.index')
 
 @section('title-page', 'Create Category')
 
@@ -14,9 +14,9 @@
     </div>
   @endif
 
-    {!! Form::open(['route'=>'categories/store']) !!}
+    {!! Form::open(['route'=>'categories.store']) !!}
 
-        @include('admin/categories/_form')
+        @include('admin.categories._form')
        
         {!! Form::submit('Add Category', ['class'=>'btn btn-primary mt-3']) !!}
 

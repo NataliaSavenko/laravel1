@@ -1,6 +1,6 @@
-@extends('admin.templates.index')
+@extends('admin/templates/index')
 
-@section('title-page', 'Create Responce')
+@section('title-page', 'Create Product')
 
 @section('content')
 
@@ -14,16 +14,11 @@
     </div>
   @endif
 
+    {!! Form::open(['route'=>'products.store','files'=>true]) !!}
 
-
-
-
-  
-    {!! Form::open(['route'=>'responces.store']) !!}
-
-        @include('admin.responces._form')
+        @include('admin.products._form')
        
-        {!! Form::submit('Add Responce', ['class'=>'btn btn-primary mt-3']) !!}
+        {!! Form::submit('Add Product', ['class'=>'btn btn-primary mt-3']) !!}
 
     {!! Form::close() !!}
 @endsection
