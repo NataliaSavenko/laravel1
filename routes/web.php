@@ -1,7 +1,11 @@
 <?php
-
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ResponceController;
 use App\Http\Controllers\MainController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +28,21 @@ Route::post('zajava', [MainController::class, 'sendZajava'])->name('sendZajava')
 Route::get('reviews', [MainController::class, 'reviews'])->name('reviews');
 Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
 
-//Route::get('admin', [Dush::class, 'reviews'])->name('reviews');
-//Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
+Route::get('admin', [DashboardController::class, 'index'])->name('admin/dashboard');
+Route::resource('admin/categories', CategoryController::class);
+
+Route::get('admin', [ResponceController::class, 'index'])->name('admin/responces');
+Route::resource('admin/responces', ResponceController::class);
+
+
+
+use App\Http\Controllers\HomeController;
+ 
+Route::get('/home', [HomeController::class, 'index']);
+
+/* Route::get('category/{category}', function(Category $category){
+    dd($category);
+
+    //$category = Category::find($id);s
+    return view();
+}); */
