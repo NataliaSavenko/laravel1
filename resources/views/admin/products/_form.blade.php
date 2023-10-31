@@ -17,7 +17,7 @@
 
 
 <div class="form-group mt-3">
-    {!! Form::label('category_id', 'Product category_id: ') !!}
+    {!! Form::label('category_id', 'Product category: ') !!}
     {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
 </div>
 
@@ -26,3 +26,5 @@
     {!! Form::label('image', 'Product image: ') !!}
     {!! Form::file('image', ['class'=>'form-control']) !!}
 </div>
+
+

@@ -25,8 +25,10 @@
         <td>{{$product->amount}}</td>
         <td>{{$product->category->name}}</td>
         <td><img src="{{asset('storage/' . $product->image)}}" alt=""></td>
+        <td>
+        <a href="{{route('products.edit', ['product'=>$product->id])}}" class="btn btn-warning">Edit</a>
 
-        <td>{!! Form::open([
+        {!! Form::open([
             'route' => ['products.destroy', $product->id],
             'method' => 'delete'
          ]) !!}

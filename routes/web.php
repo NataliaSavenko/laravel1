@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ResponceController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ShopController;
 use App\Models\Category;
 
 use Illuminate\Support\Facades\Route;
@@ -31,8 +32,10 @@ Route::get('reviews', [MainController::class, 'reviews'])->name('reviews');
 Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
 
 
+Route::get('/category/{slug}',[ShopController::class, 'category'])->name('category');
 
-Route::prefix('admin')->group(function()
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function()
 {
     Route::get('/', [DashboardController::class, 'index'])->name('admin/dashboard');
     Route::resource('categories', CategoryController::class);
@@ -43,18 +46,7 @@ Route::prefix('admin')->group(function()
 
 
 
-//Route::get('admin', [ResponceController::class, 'index'])->name('admin.responces');
+
+Auth::routes();
 
 
-
-
-use App\Http\Controllers\HomeController;
- 
-Route::get('/home', [HomeController::class, 'index']);
-
-/* Route::get('category/{category}', function(Category $category){
-    dd($category);
-
-    //$category = Category::find($id);s
-    return view();
-}); */

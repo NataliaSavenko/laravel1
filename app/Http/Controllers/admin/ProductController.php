@@ -16,6 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //$products=Product::with('category')->get();
         $products=Product::all();
         return view('admin/products/index', compact ('products'));
     }
@@ -52,20 +53,62 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+  
+
+
+
+
+    public function edit( Request $request, Product $product)
     {
-        //
+        if ($request->image) 
+        {
+    
+     $product->postUpload();
+    
+        }
+        
+
+           
+        $categories=Category::all()->pluck('name', 'id');
+        return view('admin/products/edit', compact('product','categories')); 
+                
+
+          
+       
+
+
+         
     }
+
+
+  
+    public function postUpload(Request $request,Product $product)
+    {
+      
+        
+        if($product->image)
+        {
+            Storage::delete($product->image);
+        }
+        $product=Product::create($request->all());
+       if($request->image)
+       {
+            $path=$request->file('image')->store('uploads');
+            $product->image=$path;
+            $product->save();
+       }
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return to_route('products.index');
     }
 
     /**

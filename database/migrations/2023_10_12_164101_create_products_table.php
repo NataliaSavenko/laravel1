@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('price');
             $table->smallInteger('amount');
             $table->string('image')->nullable();
+            $table->string('slug');
 
            // $table->unsignedBigInteger('category_id')->nullable();
             //$table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
