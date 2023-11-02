@@ -27,7 +27,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories=Category::all()->pluck('name', 'id');
-        return view('admin/products/create', compact ('categories'));
+        $recomendedProducts=Product::all()->pluck('name', 'id');
+        return view('admin/products/create', compact ('categories','recomendedProducts'));
     }
 
     /**
@@ -35,6 +36,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+
+
        $product=Product::create($request->all());
        if($request->image)
        {
@@ -42,6 +45,11 @@ class ProductController extends Controller
             $product->image=$path;
             $product->save();
        }
+
+$product->recomended()->sync($request->recomended);
+
+
+
        return to_route('products.index');
     }
 
@@ -125,5 +133,18 @@ class ProductController extends Controller
                return to_route('products.index');
     }
 
-   
+    
+    /*public function productDetails(Product $product)
+    {
+        $product=Product::all();
+       return view('admin.products.index', [
+            'product' => $product
+        ]);
+    }*/
+
+
+
+
+
+
 }

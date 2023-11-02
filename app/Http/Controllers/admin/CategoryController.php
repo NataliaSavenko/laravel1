@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -20,7 +21,13 @@ class CategoryController extends Controller
         $categories = Category::paginate(3);
         return view('admin.categories.index', compact('categories'));
     }
-
+    /*protected function showCategory(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => Str::words( strip_tags($attributes['category'])),
+        );
+    }*/
+    
     /**
      * Show the form for creating a new resource.
      */

@@ -8,5 +8,8 @@
         <p>{{$category->name}}, {{$category->description}}</p>
     @endforeach
 
+  
+
+
 
 @endsection

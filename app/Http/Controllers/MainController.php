@@ -8,9 +8,9 @@ use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 use App\Config\Databaseconnect;
+use App\Models\Product;
 use App\Models\Responce;
-
-
+use Illuminate\Routing\Route;
 use stdClass;
 
 class MainController extends Controller
@@ -26,14 +26,31 @@ class MainController extends Controller
        // $category->name='Category4';
        // $category->descriptions='descriptionCategory4';
        // $category->save();
+       
+
+
+
+
        $categories=Category::all();
      
-       //dd($categories);
-      // dd($categories->id);
+      // $products=Product::all();
+          // public function lastProducts()
+      
+            
+           
+         // Route::get('admin/products/index',)->name('product')->latest()->limit(5)->get()->reverse();
+
+           
+           //return $this->hasMany('App\Comment','blogitem_id')->with('userprofile')->latest()->limit(5)->get()->reverse();
+   
+
+
         $title='Main page';
       
         
         return view('index', compact('title','categories'));
+
+        return view('index', compact('title','products'));
     }
 
 

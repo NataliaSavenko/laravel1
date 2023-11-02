@@ -6,8 +6,16 @@ use App\Http\Controllers\Admin\ResponceController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ShopController;
 use App\Models\Category;
-
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+
+
+
+
+
+
+
+
 
 
 /*
@@ -32,8 +40,10 @@ Route::get('reviews', [MainController::class, 'reviews'])->name('reviews');
 Route::post('reviews', [MainController::class, 'responseS'])->name('responseS');
 
 
-Route::get('/category/{slug}',[ShopController::class, 'category'])->name('category');
+//Route::get('/category/{slug}',[ShopController::class, 'category'])->name('category');
+Route::get('/category/{category:slug}',[ShopController::class, 'category'])->name('category');
 
+Route::get('/product/{product:slug}', [ShopController::class, 'product'])->name('product');
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function()
 {
@@ -44,7 +54,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function()
 });
 
 
-
+//Route::get('/product/{slug}', [ProductController::class, 'productDetails'])->where('product', '\d+')->name('product');
 
 
 Auth::routes();

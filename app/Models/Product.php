@@ -13,7 +13,7 @@ class Product extends Model
 
 
     
-    protected $with=['category'];
+    protected $with=['category', 'recommended'];
 
 
 
@@ -31,5 +31,12 @@ class Product extends Model
         ]
     ];
     }
+
+    function recommended() {
+
+        return $this-> belongsToMany(Product::class,'recommended_products','product_id','recommended_id');
+
+    }
+
 }
 

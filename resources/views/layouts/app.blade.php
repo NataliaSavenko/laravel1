@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
     <!-- Scripts -->
    
 </head>
@@ -30,23 +30,38 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Catalog</a>
                             <ul class="dropdown-menu">
-                               @foreach ($shareCategories as $category)
-                                <li><a class="dropdown-item" href="{{route('category',['slug'=>$category->slug])}}">{{$category->name}}></a></li>
+                                @foreach ($shareCategories as $category)
+                                    <li><a class="dropdown-item" href="{{route('category', ['category'=>$category->slug])}}">{{$category->name}}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">ProductsNew</a>
+                            <ul class="dropdown-menu">
+                               
+                              
+                                <?php $shareProducts1=$shareProducts->reverse()->take(4)?>
+                               
+                                @foreach ($shareProducts1 as $product)
+                                <li><a class="dropdown-item" href="{{route('product',['product'=>$product->slug])}}">{{$product->name}}></a></li>
                                 @endforeach
                                 
                                 
                             </ul>
                         </li>          
-    </ul>
+                     </ul>
 
 
 
-                    </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -86,7 +101,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 conteiner">
             @yield('content')
         </main>
     </div>
